@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SVG Dashify Realtime</title>
+    <title>SVG Drawing Realtime</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f4f4f4; }
-        svg { background: white; border: 2px solid #333; cursor: crosshair; }
-    </script>
+        body { font-family: sans-serif; text-align: center; background: #f0f0f0; }
+        svg { background: white; border: 2px solid #333; margin-top: 20px; cursor: pointer; }
+        .instruction { color: #666; font-style: italic; }
+    </style>
 </head>
 <body>
-    <h1>Klik pada kotak untuk lukis bulatan!</h1>
+    <h1>Canvas SVG Real-time</h1>
+    <p class="instruction">Klik di dalam kotak putih untuk melukis bulatan!</p>
     
     <svg id="canvas" width="600" height="400"></svg>
 
@@ -16,6 +18,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+        // Guna Config anda yang sedia ada
         const firebaseConfig = {
             apiKey: "AIzaSyD18XzFVKsqnNl4_HbBZkhxqsVQFhf-BII",
             authDomain: "testing-10bf6.firebaseapp.com",
@@ -30,28 +33,28 @@
         const db = getDatabase(app);
         const canvas = document.getElementById('canvas');
 
-        // 1. Fungsi bila kita KLIK kat kotak SVG
+        // A. FUNGSI KLIK: Hantar koordinat ke Firebase
         canvas.addEventListener('click', (e) => {
             const rect = canvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Hantar koordinat x & y ke Firebase
             const lukisanRef = ref(db, 'lukisan');
-            const newShapeRef = push(lukisanRef); // Guna push supaya boleh buat banyak
+            const newShapeRef = push(lukisanRef); 
+            
             set(newShapeRef, {
-                type: 'circle',
                 cx: x,
                 cy: y,
-                r: 20,
-                fill: 'red'
+                r: 25,
+                fill: "hsl(" + Math.random() * 360 + ", 70%, 50%)" // Warna rawak!
             });
         });
 
-        // 2. Fungsi untuk LUKIS balik apa yang ada kat Firebase secara automatik
+        // B. FUNGSI LIVE UPDATE: Lukis balik bila data di Firebase berubah
         onValue(ref(db, 'lukisan'), (snapshot) => {
-            canvas.innerHTML = ''; // Kosongkan dulu
+            canvas.innerHTML = ''; // Bersihkan canvas
             const data = snapshot.val();
+            
             for (let id in data) {
                 const shape = data[id];
                 const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
