@@ -11,93 +11,110 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Roboto', sans-serif; background: #fff; color: #000; overflow-x: hidden; }
 
-        /* HEADER & NAVIGATION */
+        /* HEADER */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: #fff; display: flex; align-items: center;
             justify-content: space-between; padding: 15px 50px;
             border-bottom: 1px solid #eee;
         }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: #000; text-decoration: none; font-weight: bold; }
+        .logo span { color: #ed1c24; }
 
-        .logo { font-family: 'Oswald', sans-serif; font-size: 2rem; color: #000; text-decoration: none; }
-        .logo span { color: #ed1c24; } /* Warna Merah KR */
+        nav { display: flex; gap: 25px; align-items: center; }
+        nav a { text-decoration: none; color: #000; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; }
+        
+        .search-box { display: flex; align-items: center; background: #f4f4f4; padding: 8px 15px; border-radius: 4px; }
+        .search-box input { border: none; background: none; outline: none; margin-left: 10px; width: 120px; }
 
-        nav { display: flex; gap: 30px; align-items: center; }
-        nav a { text-decoration: none; color: #000; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
-        nav a:hover { color: #ed1c24; }
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
+        .cart-count { 
+            position: absolute; top: -8px; right: -10px; background: #ed1c24; 
+            color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; 
+        }
 
-        .search-box { display: flex; align-items: center; background: #f4f4f4; padding: 8px 15px; border-radius: 5px; }
-        .search-box input { border: none; background: none; outline: none; margin-left: 10px; width: 150px; }
-
-        /* HERO SECTION (Full Page) */
+        /* HERO SECTION */
         .hero {
             height: 100vh; width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
                         url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2000');
             background-size: cover; background-position: center;
             display: flex; align-items: center; padding-left: 80px;
         }
+        .hero-text { color: #fff; }
+        .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; }
+        .btn-shop { background: #ed1c24; color: #fff; padding: 15px 45px; text-decoration: none; font-weight: bold; display: inline-block; }
 
-        .hero-text { color: #fff; max-width: 500px; }
-        .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
-        .btn-shop { 
-            background: #ed1c24; color: #fff; padding: 15px 40px; 
-            text-decoration: none; font-weight: bold; transition: 0.3s; 
+        /* PRODUCT GRID */
+        #product-section { padding: 100px 50px; display: none; }
+        .grid-robot { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .robot-card { border: 1px solid #eee; padding: 15px; text-align: left; transition: 0.3s; }
+        .robot-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .robot-image { width: 100%; height: 320px; object-fit: cover; margin-bottom: 15px; }
+        .robot-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.2rem; margin-bottom: 5px; }
+        .price { color: #ed1c24; font-weight: 700; font-size: 1.1rem; margin-bottom: 15px; }
+        .btn-add { width: 100%; padding: 12px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+
+        /* CART SIDEBAR (Shopee Style) */
+        .cart-sidebar {
+            position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
+            background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 2000; transition: 0.4s; padding: 30px; display: flex; flex-direction: column;
         }
-        .btn-shop:hover { background: #000; }
-
-        /* PRODUCT SECTION (Hidden by default) */
-        #product-section { padding: 100px 50px; display: none; background: #f9f9f9; }
-        .section-title { text-align: center; font-family: 'Oswald', sans-serif; font-size: 2.5rem; margin-bottom: 50px; }
-        
-        .grid-robot { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; 
-        }
-
-        .robot-card { background: #fff; border: 1px solid #eee; padding: 15px; transition: 0.3s; }
-        .robot-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .robot-image { width: 100%; height: 300px; object-fit: cover; }
-        .robot-card h3 { margin: 15px 0 5px; font-size: 1.1rem; }
-        .robot-card p { color: #ed1c24; font-weight: bold; margin-bottom: 15px; }
-
-        .btn-add-cart { 
-            width: 100%; padding: 10px; background: #000; color: #fff; border: none; cursor: pointer; 
-        }
-
-        /* CART COUNT BADGE */
-        .cart-count { background: #ed1c24; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; vertical-align: top; }
+        .cart-sidebar.active { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px; }
+        .cart-items-list { flex: 1; overflow-y: auto; }
+        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; }
+        .cart-total { padding-top: 20px; border-top: 2px solid #000; }
+        .btn-checkout { width: 100%; padding: 15px; background: #ed1c24; color: #fff; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; }
     </style>
 </head>
 <body>
 
 <header>
     <a href="#" class="logo" onclick="showHome()">KR<span>.</span></a>
-    
     <nav>
-        <a href="#" onclick="showHome()">Home</a>
-        <a href="#" onclick="showProducts()">Product</a>
-        <a href="order.html">Order</a>
+        <a onclick="showHome()">Home</a>
+        <a onclick="showProducts()">Product</a>
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search Robot..." onkeyup="searchRobot()">
+            <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchRobot()">
         </div>
-        <a href="#"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cart-num">0</span></a>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cart-num">0</span>
+        </div>
     </nav>
 </header>
 
 <section id="home-section" class="hero">
     <div class="hero-text">
         <h1>FUTURE IS <br>IN YOUR HANDS.</h1>
-        <p>Explore the next generation of KR Autonomous Systems.</p>
+        <p style="margin-bottom: 30px; font-weight: 300;">Explore the next generation of KR Autonomous Systems.</p>
         <a href="#" class="btn-shop" onclick="showProducts()">SHOP NOW</a>
     </div>
 </section>
 
 <section id="product-section">
-    <h2 class="section-title">OUR COLLECTION</h2>
     <div class="grid-robot" id="robot-list"></div>
 </section>
+
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h2 style="font-family: 'Oswald';">YOUR CART</h2>
+        <i class="fas fa-times" style="cursor:pointer" onclick="toggleCart()"></i>
+    </div>
+    <div class="cart-items-list" id="cartItemList">
+        </div>
+    <div class="cart-total">
+        <div style="display:flex; justify-content:space-between; font-weight:bold;">
+            <span>TOTAL:</span>
+            <span id="totalPrice">RM 0</span>
+        </div>
+        <button class="btn-checkout" onclick="checkout()">ORDER VIA WHATSAPP</button>
+    </div>
+</div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -116,27 +133,73 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     let allRobots = [];
-    let cartItems = 0;
+    let cart = [];
 
-    // Fungsi Tukar Page
-    window.showProducts = function() {
+    // TUKAR PAGE
+    window.showProducts = () => {
         document.getElementById('home-section').style.display = 'none';
         document.getElementById('product-section').style.display = 'block';
     }
-
-    window.showHome = function() {
+    window.showHome = () => {
         document.getElementById('home-section').style.display = 'flex';
         document.getElementById('product-section').style.display = 'none';
     }
 
-    // Fungsi Add to Cart (Simple Logic)
-    window.addToCart = function() {
-        cartItems++;
-        document.getElementById('cart-num').innerText = cartItems;
-        alert("Added to cart!");
+    // CART LOGIC
+    window.toggleCart = () => document.getElementById('cartSidebar').classList.toggle('active');
+
+    window.addToCart = (model, harga, gambar) => {
+        cart.push({model, harga, gambar});
+        updateCartUI();
+        document.getElementById('cartSidebar').classList.add('active');
     }
 
-    // Ambil Data Firebase
+    function updateCartUI() {
+        const list = document.getElementById('cartItemList');
+        const num = document.getElementById('cart-num');
+        const totalDisp = document.getElementById('totalPrice');
+        
+        list.innerHTML = '';
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            total += parseFloat(item.harga.replace(/,/g, ''));
+            list.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.gambar}">
+                    <div>
+                        <h4 style="font-size:0.9rem">${item.model}</h4>
+                        <p style="color:#ed1c24; font-size:0.8rem">RM ${item.harga}</p>
+                        <small style="color:blue; cursor:pointer" onclick="removeItem(${index})">Remove</small>
+                    </div>
+                </div>
+            `;
+        });
+        
+        num.innerText = cart.length;
+        totalDisp.innerText = "RM " + total.toLocaleString();
+    }
+
+    window.removeItem = (index) => {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    // CHECKOUT WHATSAPP
+    window.checkout = () => {
+        if(cart.length === 0) return alert("Cart kosong!");
+        
+        let message = "Helo Kaiser Robotics! Saya ingin order:%0A";
+        cart.forEach(item => {
+            message += `- ${item.model} (RM ${item.harga})%0A`;
+        });
+        message += `%0ATotal: ${document.getElementById('totalPrice').innerText}`;
+        
+        // Bawa ke page pilihan platform dulu atau terus ke WhatsApp
+        window.location.href = `https://wa.me/60172883237?text=${message}`;
+    }
+
+    // FIREBASE DATA
     onValue(ref(db, 'robot'), (snapshot) => {
         const data = snapshot.val();
         allRobots = Object.values(data);
@@ -151,19 +214,18 @@
                 <div class="robot-card">
                     <img src="${r.gambar}" class="robot-image">
                     <h3>${r.model}</h3>
-                    <p>RM ${r.harga}</p>
-                    <button class="btn-add-cart" onclick="addToCart()">ADD TO CART</button>
+                    <div class="price">RM ${r.harga}</div>
+                    <button class="btn-add" onclick="addToCart('${r.model}', '${r.harga}', '${r.gambar}')">ADD TO CART</button>
                 </div>
             `;
         });
     }
 
-    // Fungsi Search
-    window.searchRobot = function() {
+    window.searchRobot = () => {
         const term = document.getElementById('searchInput').value.toLowerCase();
         const filtered = allRobots.filter(r => r.model.toLowerCase().includes(term));
         displayRobots(filtered);
-        showProducts(); // Auto-jump ke product page bila search
+        showProducts();
     }
 </script>
 
