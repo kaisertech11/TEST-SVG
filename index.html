@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SVG Firebase Project</title>
+    <title>SVG Dashify Realtime</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; background: #f4f4f4; }
+        svg { background: white; border: 2px solid #333; cursor: crosshair; }
+    </script>
 </head>
 <body>
-    <h1>Projek SVG Saya Berjaya!</h1>
+    <h1>Klik pada kotak untuk lukis bulatan!</h1>
     
-    <svg id="canvas" width="400" height="400" style="border:1px solid black"></svg>
+    <svg id="canvas" width="600" height="400"></svg>
 
     <script type="module">
-        // Import Firebase (Guna link CDN supaya senang)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // CONFIG ANDA (Dah saya masukkan siap-siap)
         const firebaseConfig = {
             apiKey: "AIzaSyD18XzFVKsqnNl4_HbBZkhxqsVQFhf-BII",
             authDomain: "testing-10bf6.firebaseapp.com",
@@ -26,16 +28,40 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
+        const canvas = document.getElementById('canvas');
 
-        // TEST: Hantar satu data bulatan ke Firebase
-        set(ref(db, 'lukisan/bulatan_test'), {
-            cx: 200,
-            cy: 200,
-            r: 40,
-            fill: "red"
+        // 1. Fungsi bila kita KLIK kat kotak SVG
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Hantar koordinat x & y ke Firebase
+            const lukisanRef = ref(db, 'lukisan');
+            const newShapeRef = push(lukisanRef); // Guna push supaya boleh buat banyak
+            set(newShapeRef, {
+                type: 'circle',
+                cx: x,
+                cy: y,
+                r: 20,
+                fill: 'red'
+            });
         });
 
-        alert("Data dihantar! Periksa Firebase anda.");
+        // 2. Fungsi untuk LUKIS balik apa yang ada kat Firebase secara automatik
+        onValue(ref(db, 'lukisan'), (snapshot) => {
+            canvas.innerHTML = ''; // Kosongkan dulu
+            const data = snapshot.val();
+            for (let id in data) {
+                const shape = data[id];
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute("cx", shape.cx);
+                circle.setAttribute("cy", shape.cy);
+                circle.setAttribute("r", shape.r);
+                circle.setAttribute("fill", shape.fill);
+                canvas.appendChild(circle);
+            }
+        });
     </script>
 </body>
 </html>
