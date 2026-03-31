@@ -1,70 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-    <title>SVG Drawing Realtime</title>
+    <meta charset="UTF-8">
+    <title>Kaiser Robotics - Future is Now</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background: #f0f0f0; }
-        svg { background: white; border: 2px solid #333; margin-top: 20px; cursor: pointer; }
-        .instruction { color: #666; font-style: italic; }
+        /* Gaya Futuristik/Robotik */
+        body { font-family: 'Orbitron', sans-serif; margin: 0; background: #0a0a0a; color: #fff; }
+        header { background: #111; border-bottom: 2px solid #00f2ff; padding: 30px; text-align: center; }
+        h1 { margin: 0; letter-spacing: 5px; color: #00f2ff; text-shadow: 0 0 10px #00f2ff; }
+        
+        .grid-robot { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 30px; padding: 40px; 
+        }
+        
+        .robot-card { 
+            background: #1a1a1a; border: 1px solid #333; border-radius: 15px; 
+            padding: 20px; transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .robot-card:hover { border-color: #00f2ff; transform: translateY(-10px); box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+        
+        .robot-image { width: 100%; height: 250px; object-fit: contain; background: radial-gradient(#333, #1a1a1a); border-radius: 10px; }
+        
+        .price { font-size: 1.5em; color: #00f2ff; margin: 15px 0; font-weight: bold; }
+        .specs { font-size: 0.8em; color: #aaa; margin-bottom: 20px; list-style: none; padding: 0; }
+        .specs li { margin-bottom: 5px; border-bottom: 1px solid #333; padding-bottom: 3px; }
+
+        .btn-order { 
+            background: transparent; color: #00f2ff; border: 2px solid #00f2ff; 
+            width: 100%; padding: 12px; cursor: pointer; font-weight: bold; 
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-order:hover { background: #00f2ff; color: #000; }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Canvas SVG Real-time</h1>
-    <p class="instruction">Klik di dalam kotak putih untuk melukis bulatan!</p>
-    
-    <svg id="canvas" width="600" height="400"></svg>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+<header>
+    <h1>KAISER ROBOTICS</h1>
+    <p>Sistem Automasi Masa Depan</p>
+</header>
 
-        // Guna Config anda yang sedia ada
-        const firebaseConfig = {
-            apiKey: "AIzaSyD18XzFVKsqnNl4_HbBZkhxqsVQFhf-BII",
-            authDomain: "testing-10bf6.firebaseapp.com",
-            databaseURL: "https://testing-10bf6-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "testing-10bf6",
-            storageBucket: "testing-10bf6.firebasestorage.app",
-            messagingSenderId: "15053573454",
-            appId: "1:15053573454:web:ff0b96d94cb2c41132621f"
-        };
+<div class="grid-robot" id="robot-list">
+    </div>
 
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        const canvas = document.getElementById('canvas');
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // A. FUNGSI KLIK: Hantar koordinat ke Firebase
-        canvas.addEventListener('click', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+    const firebaseConfig = {
+        apiKey: "AIzaSyD18XzFVKsqnNl4_HbBZkhxqsVQFhf-BII",
+        authDomain: "testing-10bf6.firebaseapp.com",
+        databaseURL: "https://testing-10bf6-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "testing-10bf6",
+        storageBucket: "testing-10bf6.firebasestorage.app",
+        messagingSenderId: "15053573454",
+        appId: "1:15053573454:web:ff0b96d94cb2c41132621f"
+    };
 
-            const lukisanRef = ref(db, 'lukisan');
-            const newShapeRef = push(lukisanRef); 
-            
-            set(newShapeRef, {
-                cx: x,
-                cy: y,
-                r: 25,
-                fill: "hsl(" + Math.random() * 360 + ", 70%, 50%)" // Warna rawak!
-            });
-        });
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const list = document.getElementById('robot-list');
 
-        // B. FUNGSI LIVE UPDATE: Lukis balik bila data di Firebase berubah
-        onValue(ref(db, 'lukisan'), (snapshot) => {
-            canvas.innerHTML = ''; // Bersihkan canvas
-            const data = snapshot.val();
-            
-            for (let id in data) {
-                const shape = data[id];
-                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                circle.setAttribute("cx", shape.cx);
-                circle.setAttribute("cy", shape.cy);
-                circle.setAttribute("r", shape.r);
-                circle.setAttribute("fill", shape.fill);
-                canvas.appendChild(circle);
-            }
-        });
-    </script>
+    // Ambil data dari folder 'robot' di Firebase
+    onValue(ref(db, 'robot'), (snapshot) => {
+        list.innerHTML = '';
+        const data = snapshot.val();
+        
+        for (let id in data) {
+            const r = data[id];
+            list.innerHTML += `
+                <div class="robot-card">
+                    <img src="${r.gambar}" class="robot-image">
+                    <h2>${r.model}</h2>
+                    <ul class="specs">
+                        <li>🔋 Bateri: ${r.bateri}</li>
+                        <li>🧠 AI Core: ${r.processor}</li>
+                        <li>🛠️ Fungsi: ${r.fungsi}</li>
+                    </ul>
+                    <div class="price">RM ${r.harga}</div>
+                    <button class="btn-order">Pre-Order Now</button>
+                </div>
+            `;
+        }
+    });
+</script>
 </body>
 </html>
