@@ -19,7 +19,6 @@
             overflow-x: hidden; 
         }
 
-        /* HEADER */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(10, 10, 10, 0.95); display: flex; align-items: center;
@@ -28,57 +27,123 @@
             backdrop-filter: blur(10px);
         }
 
-        /* BUTANG BACK (BARU) */
+        /* STYLE BUTANG BACK */
         .back-btn {
             display: none; /* Sorok masa kat Home */
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: #fff;
             cursor: pointer;
             font-weight: bold;
             font-family: 'Orbitron';
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            border: 1px solid #ed1c24;
+            padding: 5px 12px;
+            background: rgba(237, 28, 36, 0.1);
             transition: 0.3s;
-            border: 1px solid #333;
-            padding: 8px 15px;
-            background: rgba(255,255,255,0.05);
         }
-        .back-btn:hover { color: #ed1c24; border-color: #ed1c24; box-shadow: 0 0 10px #ed1c24; }
+        .back-btn:hover { background: #ed1c24; box-shadow: 0 0 10px #ed1c24; }
 
         .logo { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: #fff; text-decoration: none; font-weight: bold; }
         .logo span { color: #ed1c24; text-shadow: 0 0 10px #ed1c24; }
 
         nav { display: flex; gap: 25px; align-items: center; }
+        nav a { text-decoration: none; color: #fff; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        nav a:hover { color: #ed1c24; }
+
         .cart-icon { position: relative; cursor: pointer; font-size: 1.4rem; color: #ed1c24; }
-        .cart-count { position: absolute; top: -10px; right: -12px; background: #fff; color: #ed1c24; font-size: 11px; padding: 2px 7px; border-radius: 50%; font-weight: bold; }
+        .cart-count { 
+            position: absolute; top: -10px; right: -12px; background: #fff; 
+            color: #ed1c24; font-size: 11px; padding: 2px 7px; border-radius: 50%; font-weight: bold;
+        }
 
         /* HERO SLIDER */
         .slider-container { width: 100%; height: 100vh; position: relative; overflow: hidden; }
         .slides { display: flex; width: 500%; height: 100%; transition: 0.8s cubic-bezier(0.7, 0, 0.3, 1); }
-        .slide { width: 20%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+        .slide { 
+            width: 20%; height: 100%; background-size: cover; background-position: center; 
+            display: flex; align-items: center; justify-content: center; position: relative;
+            cursor: pointer;
+        }
         .slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
         .hero-content { position: relative; z-index: 10; text-align: center; }
-        .hero-content h1 { font-family: 'Orbitron', sans-serif; font-size: 5rem; text-shadow: 0 0 20px #ed1c24; }
-        .hero-content p { font-size: 1.5rem; letter-spacing: 8px; color: #ed1c24; font-weight: bold; }
+        .hero-content h1 { font-family: 'Orbitron', sans-serif; font-size: 5rem; line-height: 1; margin-bottom: 10px; text-shadow: 0 0 20px #ed1c24; }
+        .hero-content p { font-size: 1.5rem; letter-spacing: 8px; color: #ed1c24; font-weight: bold; text-transform: uppercase; }
 
-        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(237, 28, 36, 0.1); color: #fff; border: 1px solid #ed1c24; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; z-index: 20; transition: 0.3s; }
+        .nav-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(237, 28, 36, 0.1); color: #fff; border: 1px solid #ed1c24;
+            width: 60px; height: 60px; border-radius: 50%; cursor: pointer; z-index: 20; transition: 0.3s;
+        }
         .prev { left: 30px; } .next { right: 30px; }
+
+        /* SEARCH SECTION */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 50px auto;
+            position: relative;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 15px 25px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 30px;
+            color: #fff;
+            font-family: 'Rajdhani';
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        .search-container input:focus {
+            border-color: #ed1c24;
+            box-shadow: 0 0 15px rgba(237, 28, 36, 0.3);
+        }
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ed1c24;
+        }
 
         /* PRODUCT SECTION */
         #product-section { padding: 120px 50px; display: none; }
         .section-title { font-family: 'Orbitron', sans-serif; color: #ed1c24; margin-bottom: 40px; text-align: center; font-size: 2.5rem; }
-        .search-container { max-width: 600px; margin: 0 auto 50px auto; position: relative; }
-        .search-container input { width: 100%; padding: 15px 25px; background: #111; border: 1px solid #333; border-radius: 30px; color: #fff; font-family: 'Rajdhani'; outline: none; }
-        .search-container input:focus { border-color: #ed1c24; }
-
+        
         .grid-robot { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
-        .robot-card { background: linear-gradient(145deg, #151515, #0a0a0a); border: 1px solid #222; padding: 20px; border-radius: 15px; transition: 0.4s; }
-        .robot-card:hover { border-color: #ed1c24; transform: translateY(-10px); }
+        .robot-card { 
+            background: linear-gradient(145deg, #151515, #0a0a0a); 
+            border: 1px solid #222; padding: 20px; border-radius: 15px; 
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .robot-card:hover { border-color: #ed1c24; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(237, 28, 36, 0.2); }
         .robot-image { width: 100%; height: 350px; object-fit: cover; border-radius: 10px; margin-bottom: 20px; }
-        .btn-add { width: 100%; padding: 15px; background: #ed1c24; color: #fff; border: none; font-weight: bold; cursor: pointer; font-family: 'Orbitron'; }
+        
+        .btn-add { 
+            width: 100%; padding: 15px; background: #ed1c24; color: #fff; border: none; 
+            font-weight: bold; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s;
+        }
+
+        /* NOT FOUND MESSAGE */
+        #noMatch {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            background: rgba(237, 28, 36, 0.1);
+            border: 1px dashed #ed1c24;
+            color: #ed1c24;
+            font-family: 'Orbitron';
+            border-radius: 15px;
+            display: none;
+        }
 
         /* CART SIDEBAR */
-        .cart-sidebar { position: fixed; right: -400px; top: 0; width: 380px; height: 100%; background: #0a0a0a; border-left: 2px solid #ed1c24; z-index: 2000; transition: 0.5s; padding: 30px; display: flex; flex-direction: column; }
+        .cart-sidebar {
+            position: fixed; right: -400px; top: 0; width: 380px; height: 100%;
+            background: #0a0a0a; border-left: 2px solid #ed1c24; z-index: 2000;
+            transition: 0.5s; padding: 30px; display: flex; flex-direction: column;
+        }
         .cart-sidebar.active { right: 0; }
         .cart-footer { margin-top: auto; padding-top: 20px; border-top: 2px solid #ed1c24; }
 
@@ -88,13 +153,16 @@
 <body>
 
 <header>
-    <div id="backButton" class="back-btn" onclick="showHome()">
-        <i class="fas fa-arrow-left"></i> BACK
+    <div id="btnBack" class="back-btn" onclick="showHome()">
+        <i class="fas fa-chevron-left"></i> BACK
     </div>
 
     <a href="#" class="logo" onclick="location.reload()">KR<span>.</span></a>
     
     <nav>
+        <a onclick="showHome()">Home</a>
+        <a onclick="showProducts()">Product</a>
+        <a href="order.html">Contact</a>
         <div class="cart-icon" onclick="toggleCart()">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count" id="cartCount">0</span>
@@ -128,19 +196,19 @@
 
 <section id="product-section">
     <h2 class="section-title">THE COLLECTION</h2>
+
     <div class="search-container">
         <input type="text" id="robotSearch" placeholder="Search for your robot..." onkeyup="filterRobots()">
+        <i class="fas fa-search search-icon"></i>
     </div>
+
     <div class="grid-robot" id="robotDisplay">
-        <div id="noMatch" style="display:none; grid-column: 1/-1; text-align:center; padding:50px; color:#ed1c24;">ITEM NOT MATCH</div>
+        <div id="noMatch">ITEM NOT MATCH</div>
     </div>
 </section>
 
 <div class="cart-sidebar" id="cartSidebar">
-    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #ed1c24; padding-bottom:10px;">
-        <h2 style="font-family:'Orbitron';">YOUR CART</h2>
-        <i class="fas fa-times" style="cursor:pointer; font-size:1.5rem;" onclick="toggleCart()"></i>
-    </div>
+    <h2 style="font-family:'Orbitron'; border-bottom:2px solid #ed1c24; padding-bottom:10px;">YOUR CART</h2>
     <div id="cartItemsList" style="flex:1; overflow-y:auto; margin-top:20px;"></div>
     <div class="cart-footer">
         <div style="display:flex; justify-content:space-between; font-size:1.2rem; font-weight:bold;">
@@ -149,6 +217,21 @@
         <button onclick="checkout()" style="width:100%; padding:15px; background:#ed1c24; color:#fff; border:none; margin-top:15px; font-weight:bold; cursor:pointer;">ORDER VIA WHATSAPP</button>
     </div>
 </div>
+
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h2 class="logo">KR<span>.</span></h2>
+            <p>Peneraju revolusi robotik dunia. Kami membina apa yang mustahil hari ini untuk menjadi realiti esok.</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://wa.me/60172883237"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.tiktok.com/@._ipan9"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/zeeeq._"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <p style="text-align:center; margin-top:50px; opacity:0.5;">&copy; 2026 KAISER ROBOTICS TECH.</p>
+</footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -175,36 +258,35 @@
         document.getElementById('slider').style.transform = `translateX(-${currentSlide * 20}%)`;
     }
 
-    // TUKAR PAGE & TUNJUK BUTANG BACK
+    // TUKAR PAGE: TUNJUK BUTANG BACK
     window.showProducts = () => {
         document.getElementById('home-page').style.display = 'none';
         document.getElementById('product-section').style.display = 'block';
-        document.getElementById('backButton').style.display = 'flex'; // Tunjuk butang back
+        document.getElementById('btnBack').style.display = 'flex'; 
         window.scrollTo(0,0);
     }
 
+    // TUKAR PAGE: SOROK BUTANG BACK
     window.showHome = () => {
         document.getElementById('home-page').style.display = 'block';
         document.getElementById('product-section').style.display = 'none';
-        document.getElementById('backButton').style.display = 'none'; // Sorok butang back
-        document.getElementById('cartSidebar').classList.remove('active'); // Tutup cart kalau terbuka
+        document.getElementById('btnBack').style.display = 'none';
+        document.getElementById('cartSidebar').classList.remove('active');
     }
 
     onValue(ref(db, 'robot'), (snapshot) => {
-        allRobots = Object.values(snapshot.val());
+        const data = snapshot.val();
+        allRobots = Object.values(data);
         displayRobots(allRobots);
     });
 
     function displayRobots(robots) {
         const display = document.getElementById('robotDisplay');
-        const noMatch = document.getElementById('noMatch');
-        display.innerHTML = '';
-        display.appendChild(noMatch);
+        display.innerHTML = '<div id="noMatch">ITEM NOT MATCH</div>';
         
         if(robots.length === 0) {
-            noMatch.style.display = 'block';
+            document.getElementById('noMatch').style.display = 'block';
         } else {
-            noMatch.style.display = 'none';
             robots.forEach((r, index) => {
                 const originalIndex = allRobots.indexOf(r);
                 display.innerHTML += `
@@ -220,19 +302,18 @@
     }
 
     window.filterRobots = () => {
-        const term = document.getElementById('robotSearch').value.toLowerCase();
-        const filtered = allRobots.filter(r => r.model.toLowerCase().includes(term));
+        const searchTerm = document.getElementById('robotSearch').value.toLowerCase();
+        const filtered = allRobots.filter(r => r.model.toLowerCase().includes(searchTerm));
         displayRobots(filtered);
     }
 
     window.toggleCart = () => {
         const sidebar = document.getElementById('cartSidebar');
         sidebar.classList.toggle('active');
-        // Bila cart terbuka, kita boleh juga tunjuk butang back kalau nak
         if(sidebar.classList.contains('active')) {
-            document.getElementById('backButton').style.display = 'flex';
+             document.getElementById('btnBack').style.display = 'flex';
         } else if (document.getElementById('home-page').style.display !== 'none') {
-             document.getElementById('backButton').style.display = 'none';
+             document.getElementById('btnBack').style.display = 'none';
         }
     }
 
@@ -240,7 +321,7 @@
         cart.push(allRobots[idx]);
         renderCart();
         document.getElementById('cartSidebar').classList.add('active');
-        document.getElementById('backButton').style.display = 'flex';
+        document.getElementById('btnBack').style.display = 'flex';
     }
 
     function renderCart() {
@@ -251,7 +332,7 @@
         let total = 0;
         cart.forEach((item, i) => {
             total += parseFloat(item.harga.replace(/,/g, ''));
-            list.innerHTML += `<div class="cart-item"><img src="${item.gambar}"><div><p>${item.model}</p><p style="color:#ed1c24;">RM ${item.harga}</p><small style="cursor:pointer; color:#777;" onclick="removeFromCart(${i})">Remove</small></div></div>`;
+            list.innerHTML += `<div class="cart-item"><img src="${item.gambar}"><div><p>${item.model}</p><p style="color:#ed1c24;">RM ${item.harga}</p><small style="cursor:pointer;" onclick="removeFromCart(${i})">Remove</small></div></div>`;
         });
         count.innerText = cart.length;
         totalDisp.innerText = "RM " + total.toLocaleString();
