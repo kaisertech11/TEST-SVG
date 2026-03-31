@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG Firebase Project</title>
+</head>
+<body>
+    <h1>Projek SVG Saya Berjaya!</h1>
+    
+    <svg id="canvas" width="400" height="400" style="border:1px solid black"></svg>
+
+    <script type="module">
+        // Import Firebase (Guna link CDN supaya senang)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // CONFIG ANDA (Dah saya masukkan siap-siap)
+        const firebaseConfig = {
+            apiKey: "AIzaSyD18XzFVKsqnNl4_HbBZkhxqsVQFhf-BII",
+            authDomain: "testing-10bf6.firebaseapp.com",
+            databaseURL: "https://testing-10bf6-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "testing-10bf6",
+            storageBucket: "testing-10bf6.firebasestorage.app",
+            messagingSenderId: "15053573454",
+            appId: "1:15053573454:web:ff0b96d94cb2c41132621f"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // TEST: Hantar satu data bulatan ke Firebase
+        set(ref(db, 'lukisan/bulatan_test'), {
+            cx: 200,
+            cy: 200,
+            r: 40,
+            fill: "red"
+        });
+
+        alert("Data dihantar! Periksa Firebase anda.");
+    </script>
+</body>
+</html>
