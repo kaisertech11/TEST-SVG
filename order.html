@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Kaiser Robotics</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500&display=swap');
+        
+        body {
+            margin: 0;
+            background: #050505;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00f2ff;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 300px;
+        }
+
+        .link-card {
+            padding: 20px;
+            border: 2px solid #222;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Warna Ikut Platform */
+        .tiktok:hover { border-color: #ff0050; box-shadow: 0 0 20px #ff0050; }
+        .instagram:hover { border-color: #e1306c; box-shadow: 0 0 20px #e1306c; }
+        .whatsapp:hover { border-color: #25d366; box-shadow: 0 0 20px #25d366; }
+
+        .link-card:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+    <h1>CHOOSE PLATFORM</h1>
+    <p style="margin-bottom: 40px; color: #888;">Select a method to proceed with your order</p>
+
+    <div class="links-container">
+        <a href="https://www.tiktok.com/@._ipan9?_r=1&_t=ZS-958aZFwkqHJ" class="link-card tiktok" target="_blank">TIKTOK</a>
+        <a href="https://www.instagram.com/zeeeq._?igsh=MW9pZ3B1ejlxajV0bA==" class="link-card instagram" target="_blank">INSTAGRAM</a>
+        <a href="https://wa.me/60172883237" class="link-card whatsapp" target="_blank">WHATSAPP</a>
+    </div>
+
+    <a href="index.html" style="margin-top: 50px; color: #00f2ff; text-decoration: none;">← Back to Store</a>
+
+</body>
+</html>
