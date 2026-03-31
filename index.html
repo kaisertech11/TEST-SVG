@@ -9,23 +9,25 @@
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@300;400;700&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', sans-serif; background: #fff; color: #000; overflow-x: hidden; }
+        
+        /* WARNA THEMA GELAP - Mengekalkan vibe asal */
+        body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
 
         /* HEADER */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: #fff; display: flex; align-items: center;
+            background: #111; display: flex; align-items: center;
             justify-content: space-between; padding: 15px 50px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #222;
         }
-        .logo { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: #000; text-decoration: none; font-weight: bold; }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 2.2rem; color: #fff; text-decoration: none; font-weight: bold; }
         .logo span { color: #ed1c24; }
 
         nav { display: flex; gap: 25px; align-items: center; }
-        nav a { text-decoration: none; color: #000; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; }
+        nav a { text-decoration: none; color: #fff; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; cursor: pointer; }
         
-        .search-box { display: flex; align-items: center; background: #f4f4f4; padding: 8px 15px; border-radius: 4px; }
-        .search-box input { border: none; background: none; outline: none; margin-left: 10px; width: 120px; }
+        .search-box { display: flex; align-items: center; background: #222; padding: 8px 15px; border-radius: 4px; border: 1px solid #333;}
+        .search-box input { border: none; background: none; outline: none; margin-left: 10px; width: 120px; color: #fff;}
 
         .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
         .cart-count { 
@@ -33,40 +35,75 @@
             color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; 
         }
 
-        /* HERO SECTION */
-        .hero {
-            height: 100vh; width: 100%;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2000');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; padding-left: 80px;
+        /* HERO SLIDER SECTION - Gambar Boleh Slide */
+        .hero-slider-container {
+            width: 100%;
+            height: 100vh; /* Full page */
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
         }
-        .hero-text { color: #fff; }
-        .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; }
-        .btn-shop { background: #ed1c24; color: #fff; padding: 15px 45px; text-decoration: none; font-weight: bold; display: inline-block; }
+        .hero-section {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            padding-left: 80px;
+        }
+
+        /* Definisi Gambar Slider - 5 Keping (Saya guna link gempak) */
+        .slide1 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://img.freepik.com/premium-photo/industrial-robot-cinematic-glory-generative-ai_506134-6244.jpg'); }
+        .slide2 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://img.freepik.com/premium-photo/robot-female-female-illuminated-by-cinematic-light_715271-757.jpg?w=2000'); }
+        .slide3 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2000'); }
+        .slide4 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=1200'); }
+        .slide5 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&w=1200'); }
+
+        .hero-text { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.8); }
+        .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; text-shadow: 0 0 20px rgba(237,28,36,0.3); }
+        .btn-shop { background: #ed1c24; color: #fff; padding: 15px 45px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 0 15px rgba(237,28,36,0.4); }
+
+        /* Butang Mampir Slider */
+        .slider-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(17,17,17,0.7); color: #fff;
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 100; transition: 0.3s;
+            border: 1px solid #333;
+        }
+        .slider-arrow:hover { background: #ed1c24; border-color: #ed1c24; box-shadow: 0 0 15px #ed1c24;}
+        .slider-prev { left: 30px; }
+        .slider-next { right: 30px; }
 
         /* PRODUCT GRID */
         #product-section { padding: 100px 50px; display: none; }
         .grid-robot { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .robot-card { border: 1px solid #eee; padding: 15px; text-align: left; transition: 0.3s; }
-        .robot-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .robot-image { width: 100%; height: 320px; object-fit: cover; margin-bottom: 15px; }
-        .robot-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.2rem; margin-bottom: 5px; }
+        .robot-card { background: #111; border: 1px solid #222; padding: 15px; text-align: left; transition: 0.3s; border-radius: 8px;}
+        .robot-card:hover { border-color: #ed1c24; box-shadow: 0 10px 30px rgba(237,28,36,0.1); }
+        .robot-image { width: 100%; height: 320px; object-fit: cover; margin-bottom: 15px; border-radius: 4px;}
+        .robot-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.2rem; margin-bottom: 5px; color: #fff;}
         .price { color: #ed1c24; font-weight: 700; font-size: 1.1rem; margin-bottom: 15px; }
-        .btn-add { width: 100%; padding: 12px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+        .btn-add { width: 100%; padding: 12px; background: #000; color: #fff; border: 1px solid #333; cursor: pointer; font-weight: bold; }
+        .btn-add:hover { background: #ed1c24; border-color: #ed1c24; }
 
-        /* CART SIDEBAR (Shopee Style) */
+        /* CART SIDEBAR */
         .cart-sidebar {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
-            background: #fff; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            background: #111; box-shadow: -5px 0 15px rgba(0,0,0,0.5);
             z-index: 2000; transition: 0.4s; padding: 30px; display: flex; flex-direction: column;
+            border-left: 1px solid #222;
         }
         .cart-sidebar.active { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ed1c24; padding-bottom: 15px; margin-bottom: 20px; }
         .cart-items-list { flex: 1; overflow-y: auto; }
-        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .cart-item img { width: 60px; height: 60px; object-fit: cover; }
-        .cart-total { padding-top: 20px; border-top: 2px solid #000; }
+        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
+        .cart-total { padding-top: 20px; border-top: 2px solid #ed1c24; }
         .btn-checkout { width: 100%; padding: 15px; background: #ed1c24; color: #fff; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; }
     </style>
 </head>
@@ -88,13 +125,44 @@
     </nav>
 </header>
 
-<section id="home-section" class="hero">
-    <div class="hero-text">
-        <h1>FUTURE IS <br>IN YOUR HANDS.</h1>
-        <p style="margin-bottom: 30px; font-weight: 300;">Explore the next generation of KR Autonomous Systems.</p>
-        <a href="#" class="btn-shop" onclick="showProducts()">SHOP NOW</a>
+<div id="home-section">
+    <div class="hero-slider-container">
+        <div class="slider-arrow slider-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+        <div class="slider-arrow slider-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
+
+        <div class="hero-section slide1">
+            <div class="hero-text">
+                <h1>FUTURE IS <br>IN YOUR HANDS.</h1>
+                <p style="margin-bottom: 30px; font-weight: 300;">Explore the next generation of KR Autonomous Systems.</p>
+                <a href="#" class="btn-shop" onclick="showProducts()">SHOP NOW</a>
+            </div>
+        </div>
+        <div class="hero-section slide2">
+            <div class="hero-text">
+                <h1>MED DROID X1<br>PRE-ORDER NOW.</h1>
+                <p style="margin-bottom: 30px; font-weight: 300;">Bio-Link AI Core for micro-surgery.</p>
+            </div>
+        </div>
+        <div class="hero-section slide3">
+            <div class="hero-text">
+                <h1>CYBER TITAN D1<br>INDUSTRI HEBAT.</h1>
+                <p style="margin-bottom: 30px; font-weight: 300;">For industrial monitoring.</p>
+            </div>
+        </div>
+        <div class="hero-section slide4">
+            <div class="hero-text">
+                <h1>AQUA SUB<br>EXPLORE OCEAN.</h1>
+                <p style="margin-bottom: 30px; font-weight: 300;">Depth up to 2000 meters.</p>
+            </div>
+        </div>
+        <div class="hero-section slide5">
+            <div class="hero-text">
+                <h1>LIFTER DROID<br>HEAVY LOGISTICS.</h1>
+                <p style="margin-bottom: 30px; font-weight: 300;">Carry up to 50 tons.</p>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
 <section id="product-section">
     <div class="grid-robot" id="robot-list"></div>
@@ -102,13 +170,13 @@
 
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
-        <h2 style="font-family: 'Oswald';">YOUR CART</h2>
-        <i class="fas fa-times" style="cursor:pointer" onclick="toggleCart()"></i>
+        <h2 style="font-family: 'Oswald'; color:#fff;">YOUR CART</h2>
+        <i class="fas fa-times" style="cursor:pointer; color:#fff;" onclick="toggleCart()"></i>
     </div>
     <div class="cart-items-list" id="cartItemList">
         </div>
     <div class="cart-total">
-        <div style="display:flex; justify-content:space-between; font-weight:bold;">
+        <div style="display:flex; justify-content:space-between; font-weight:bold; color:#fff;">
             <span>TOTAL:</span>
             <span id="totalPrice">RM 0</span>
         </div>
@@ -134,6 +202,7 @@
     const db = getDatabase(app);
     let allRobots = [];
     let cart = [];
+    let currentSlide = 0;
 
     // TUKAR PAGE
     window.showProducts = () => {
@@ -141,8 +210,18 @@
         document.getElementById('product-section').style.display = 'block';
     }
     window.showHome = () => {
-        document.getElementById('home-section').style.display = 'flex';
+        document.getElementById('home-section').style.display = 'block';
         document.getElementById('product-section').style.display = 'none';
+    }
+
+    // LOGIK SLIDER
+    window.changeSlide = (direction) => {
+        const slides = document.querySelectorAll('.hero-section');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        
+        slides.forEach(slide => {
+            slide.style.transform = `translateX(-${currentSlide * 100}%)`;
+        });
     }
 
     // CART LOGIC
@@ -168,9 +247,9 @@
                 <div class="cart-item">
                     <img src="${item.gambar}">
                     <div>
-                        <h4 style="font-size:0.9rem">${item.model}</h4>
+                        <h4 style="font-size:0.9rem; color:#fff;">${item.model}</h4>
                         <p style="color:#ed1c24; font-size:0.8rem">RM ${item.harga}</p>
-                        <small style="color:blue; cursor:pointer" onclick="removeItem(${index})">Remove</small>
+                        <small style="color:# ed1c24; cursor:pointer" onclick="removeItem(${index})">Remove</small>
                     </div>
                 </div>
             `;
@@ -195,7 +274,7 @@
         });
         message += `%0ATotal: ${document.getElementById('totalPrice').innerText}`;
         
-        // Bawa ke page pilihan platform dulu atau terus ke WhatsApp
+        // Terus ke WhatsApp
         window.location.href = `https://wa.me/60172883237?text=${message}`;
     }
 
