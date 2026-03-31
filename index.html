@@ -9,8 +9,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@300;400;700&display=swap');
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* WARNA THEMA GELAP - Mengekalkan vibe asal */
         body { font-family: 'Roboto', sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
 
         /* HEADER */
@@ -30,81 +28,49 @@
         .search-box input { border: none; background: none; outline: none; margin-left: 10px; width: 120px; color: #fff;}
 
         .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
-        .cart-count { 
-            position: absolute; top: -8px; right: -10px; background: #ed1c24; 
-            color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; 
-        }
+        .cart-count { position: absolute; top: -8px; right: -10px; background: #ed1c24; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; }
 
-        /* HERO SLIDER SECTION - Gambar Boleh Slide */
-        .hero-slider-container {
-            width: 100%;
-            height: 100vh; /* Full page */
-            margin-top: 0;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-        }
-        .hero-section {
-            width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            padding-left: 80px;
-        }
-
-        /* Definisi Gambar Slider - 5 Keping (Saya guna link gempak) */
+        /* HERO SLIDER */
+        .hero-slider-container { width: 100%; height: 100vh; position: relative; overflow: hidden; display: flex; }
+        .hero-section { width: 100%; height: 100%; flex-shrink: 0; background-size: cover; background-position: center; transition: transform 0.5s ease-in-out; display: flex; align-items: center; padding-left: 80px; }
+        
         .slide1 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://img.freepik.com/premium-photo/industrial-robot-cinematic-glory-generative-ai_506134-6244.jpg'); }
         .slide2 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://img.freepik.com/premium-photo/robot-female-female-illuminated-by-cinematic-light_715271-757.jpg?w=2000'); }
         .slide3 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2000'); }
         .slide4 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=1200'); }
         .slide5 { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&w=1200'); }
 
-        .hero-text { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.8); }
-        .hero-text h1 { font-family: 'Oswald', sans-serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; text-shadow: 0 0 20px rgba(237,28,36,0.3); }
-        .btn-shop { background: #ed1c24; color: #fff; padding: 15px 45px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 0 15px rgba(237,28,36,0.4); }
-
-        /* Butang Mampir Slider */
-        .slider-arrow {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(17,17,17,0.7); color: #fff;
-            width: 50px; height: 50px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 100; transition: 0.3s;
-            border: 1px solid #333;
-        }
-        .slider-arrow:hover { background: #ed1c24; border-color: #ed1c24; box-shadow: 0 0 15px #ed1c24;}
-        .slider-prev { left: 30px; }
-        .slider-next { right: 30px; }
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(17,17,17,0.7); color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 1px solid #333; }
+        .slider-prev { left: 30px; } .slider-next { right: 30px; }
 
         /* PRODUCT GRID */
-        #product-section { padding: 100px 50px; display: none; }
+        #product-section { padding: 100px 50px; background: #0a0a0a; }
         .grid-robot { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-        .robot-card { background: #111; border: 1px solid #222; padding: 15px; text-align: left; transition: 0.3s; border-radius: 8px;}
-        .robot-card:hover { border-color: #ed1c24; box-shadow: 0 10px 30px rgba(237,28,36,0.1); }
-        .robot-image { width: 100%; height: 320px; object-fit: cover; margin-bottom: 15px; border-radius: 4px;}
-        .robot-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.2rem; margin-bottom: 5px; color: #fff;}
-        .price { color: #ed1c24; font-weight: 700; font-size: 1.1rem; margin-bottom: 15px; }
-        .btn-add { width: 100%; padding: 12px; background: #000; color: #fff; border: 1px solid #333; cursor: pointer; font-weight: bold; }
-        .btn-add:hover { background: #ed1c24; border-color: #ed1c24; }
+        .robot-card { background: #111; border: 1px solid #222; padding: 15px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .robot-card:hover { border-color: #ed1c24; transform: translateY(-5px); }
+        .robot-image { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; }
+        .price { color: #ed1c24; font-weight: 700; margin: 10px 0; }
+
+        /* DETAIL VIEW (MODAL) */
+        .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        .detail-content { background: #111; width: 90%; max-width: 900px; display: flex; border: 1px solid #ed1c24; position: relative; }
+        .detail-img { width: 50%; object-fit: cover; }
+        .detail-info { width: 50%; padding: 40px; }
+        .close-detail { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #ed1c24; }
+
+        /* FOOTER (MAROON/RED) */
+        footer { background: #4a0404; padding: 60px 50px 20px; margin-top: 50px; border-top: 4px solid #ed1c24; }
+        .footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h2 { font-family: 'Oswald'; margin-bottom: 20px; letter-spacing: 2px; }
+        .social-links { display: flex; gap: 20px; font-size: 1.5rem; margin-top: 20px; }
+        .social-links a { color: #fff; transition: 0.3s; }
+        .social-links a:hover { color: #ed1c24; }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; color: #ccc; }
 
         /* CART SIDEBAR */
-        .cart-sidebar {
-            position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
-            background: #111; box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            z-index: 2000; transition: 0.4s; padding: 30px; display: flex; flex-direction: column;
-            border-left: 1px solid #222;
-        }
+        .cart-sidebar { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: #111; z-index: 2000; transition: 0.4s; padding: 30px; display: flex; flex-direction: column; border-left: 1px solid #ed1c24; }
         .cart-sidebar.active { right: 0; }
-        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ed1c24; padding-bottom: 15px; margin-bottom: 20px; }
-        .cart-items-list { flex: 1; overflow-y: auto; }
-        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 4px; }
-        .cart-total { padding-top: 20px; border-top: 2px solid #ed1c24; }
-        .btn-checkout { width: 100%; padding: 15px; background: #ed1c24; color: #fff; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -116,12 +82,9 @@
         <a onclick="showProducts()">Product</a>
         <div class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchRobot()">
+            <input type="text" id="searchInput" placeholder="Search Robot..." onkeyup="searchRobot()">
         </div>
-        <div class="cart-icon" onclick="toggleCart()">
-            <i class="fas fa-shopping-bag"></i>
-            <span class="cart-count" id="cart-num">0</span>
-        </div>
+        <div class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cart-num">0</span></div>
     </nav>
 </header>
 
@@ -129,38 +92,13 @@
     <div class="hero-slider-container">
         <div class="slider-arrow slider-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
         <div class="slider-arrow slider-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
-
         <div class="hero-section slide1">
-            <div class="hero-text">
-                <h1>FUTURE IS <br>IN YOUR HANDS.</h1>
-                <p style="margin-bottom: 30px; font-weight: 300;">Explore the next generation of KR Autonomous Systems.</p>
-                <a href="#" class="btn-shop" onclick="showProducts()">SHOP NOW</a>
-            </div>
+            <div class="hero-text"><h1>FUTURE IS <br>IN YOUR HANDS.</h1><a href="#" class="btn-shop" style="background:#ed1c24; color:#fff; padding:15px 40px; text-decoration:none; font-weight:bold; margin-top:20px; display:inline-block;" onclick="showProducts()">SHOP NOW</a></div>
         </div>
-        <div class="hero-section slide2">
-            <div class="hero-text">
-                <h1>MED DROID X1<br>PRE-ORDER NOW.</h1>
-                <p style="margin-bottom: 30px; font-weight: 300;">Bio-Link AI Core for micro-surgery.</p>
-            </div>
-        </div>
-        <div class="hero-section slide3">
-            <div class="hero-text">
-                <h1>CYBER TITAN D1<br>INDUSTRI HEBAT.</h1>
-                <p style="margin-bottom: 30px; font-weight: 300;">For industrial monitoring.</p>
-            </div>
-        </div>
-        <div class="hero-section slide4">
-            <div class="hero-text">
-                <h1>AQUA SUB<br>EXPLORE OCEAN.</h1>
-                <p style="margin-bottom: 30px; font-weight: 300;">Depth up to 2000 meters.</p>
-            </div>
-        </div>
-        <div class="hero-section slide5">
-            <div class="hero-text">
-                <h1>LIFTER DROID<br>HEAVY LOGISTICS.</h1>
-                <p style="margin-bottom: 30px; font-weight: 300;">Carry up to 50 tons.</p>
-            </div>
-        </div>
+        <div class="hero-section slide2"><h1>CYBER TITAN D1</h1></div>
+        <div class="hero-section slide3"><h1>AQUA BOT V2</h1></div>
+        <div class="hero-section slide4"><h1>MEDICAL UNIT</h1></div>
+        <div class="hero-section slide5"><h1>LIFTER DROID</h1></div>
     </div>
 </div>
 
@@ -168,21 +106,42 @@
     <div class="grid-robot" id="robot-list"></div>
 </section>
 
-<div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-        <h2 style="font-family: 'Oswald'; color:#fff;">YOUR CART</h2>
-        <i class="fas fa-times" style="cursor:pointer; color:#fff;" onclick="toggleCart()"></i>
-    </div>
-    <div class="cart-items-list" id="cartItemList">
+<div class="detail-overlay" id="detailOverlay">
+    <div class="detail-content">
+        <span class="close-detail" onclick="closeDetail()">&times;</span>
+        <img id="detailImg" class="detail-img" src="">
+        <div class="detail-info">
+            <h1 id="detailTitle" style="font-family:'Oswald'; color:#ed1c24; margin-bottom:10px;"></h1>
+            <p id="detailPrice" style="font-weight:bold; font-size:1.5rem; margin-bottom:20px;"></p>
+            <p id="detailDesc" style="color:#ccc; line-height:1.6; margin-bottom:20px;"></p>
+            <div id="detailSpecs" style="font-size:0.9rem; margin-bottom:30px; border-top:1px solid #333; padding-top:15px;"></div>
+            <button id="addBtnDetail" style="width:100%; padding:15px; background:#ed1c24; color:#fff; border:none; font-weight:bold; cursor:pointer;">ADD TO CART</button>
         </div>
-    <div class="cart-total">
-        <div style="display:flex; justify-content:space-between; font-weight:bold; color:#fff;">
-            <span>TOTAL:</span>
-            <span id="totalPrice">RM 0</span>
-        </div>
-        <button class="btn-checkout" onclick="checkout()">ORDER VIA WHATSAPP</button>
     </div>
 </div>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h2>KAISER ROBOTICS<span>.</span></h2>
+            <p>Peneraju teknologi automasi dan robotik masa hadapan. Kami membina solusi untuk air, udara, dan darat.</p>
+        </div>
+        <div class="footer-section">
+            <h2>CONTACT US</h2>
+            <p><i class="fas fa-envelope"></i> kaiser.robotics@tech.com</p>
+            <p><i class="fas fa-phone"></i> +6017-2883237</p>
+            <div class="social-links">
+                <a href="https://wa.me/60172883237"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/zeeeq._"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@._ipan9"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Kaiser Robotics Tech. All Rights Reserved. <br>
+        <span style="font-style: italic; opacity: 0.5;">"The Future is Now"</span>
+    </div>
+</footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -204,108 +163,45 @@
     let cart = [];
     let currentSlide = 0;
 
-    // TUKAR PAGE
-    window.showProducts = () => {
-        document.getElementById('home-section').style.display = 'none';
-        document.getElementById('product-section').style.display = 'block';
-    }
-    window.showHome = () => {
-        document.getElementById('home-section').style.display = 'block';
-        document.getElementById('product-section').style.display = 'none';
-    }
-
-    // LOGIK SLIDER
-    window.changeSlide = (direction) => {
+    window.changeSlide = (n) => {
         const slides = document.querySelectorAll('.hero-section');
-        currentSlide = (currentSlide + direction + slides.length) % slides.length;
-        
-        slides.forEach(slide => {
-            slide.style.transform = `translateX(-${currentSlide * 100}%)`;
-        });
+        currentSlide = (currentSlide + n + slides.length) % slides.length;
+        slides.forEach(s => s.style.transform = `translateX(-${currentSlide * 100}%)`);
     }
 
-    // CART LOGIC
-    window.toggleCart = () => document.getElementById('cartSidebar').classList.toggle('active');
+    window.showProducts = () => { document.getElementById('home-section').style.display='none'; document.getElementById('product-section').style.display='block'; window.scrollTo(0,0); }
+    window.showHome = () => { document.getElementById('home-section').style.display='block'; document.getElementById('product-section').style.display='none'; }
 
-    window.addToCart = (model, harga, gambar) => {
-        cart.push({model, harga, gambar});
-        updateCartUI();
-        document.getElementById('cartSidebar').classList.add('active');
-    }
-
-    function updateCartUI() {
-        const list = document.getElementById('cartItemList');
-        const num = document.getElementById('cart-num');
-        const totalDisp = document.getElementById('totalPrice');
-        
-        list.innerHTML = '';
-        let total = 0;
-        
-        cart.forEach((item, index) => {
-            total += parseFloat(item.harga.replace(/,/g, ''));
-            list.innerHTML += `
-                <div class="cart-item">
-                    <img src="${item.gambar}">
-                    <div>
-                        <h4 style="font-size:0.9rem; color:#fff;">${item.model}</h4>
-                        <p style="color:#ed1c24; font-size:0.8rem">RM ${item.harga}</p>
-                        <small style="color:# ed1c24; cursor:pointer" onclick="removeItem(${index})">Remove</small>
-                    </div>
-                </div>
-            `;
-        });
-        
-        num.innerText = cart.length;
-        totalDisp.innerText = "RM " + total.toLocaleString();
-    }
-
-    window.removeItem = (index) => {
-        cart.splice(index, 1);
-        updateCartUI();
-    }
-
-    // CHECKOUT WHATSAPP
-    window.checkout = () => {
-        if(cart.length === 0) return alert("Cart kosong!");
-        
-        let message = "Helo Kaiser Robotics! Saya ingin order:%0A";
-        cart.forEach(item => {
-            message += `- ${item.model} (RM ${item.harga})%0A`;
-        });
-        message += `%0ATotal: ${document.getElementById('totalPrice').innerText}`;
-        
-        // Terus ke WhatsApp
-        window.location.href = `https://wa.me/60172883237?text=${message}`;
-    }
-
-    // FIREBASE DATA
-    onValue(ref(db, 'robot'), (snapshot) => {
-        const data = snapshot.val();
-        allRobots = Object.values(data);
-        displayRobots(allRobots);
-    });
-
-    function displayRobots(robots) {
+    onValue(ref(db, 'robot'), (s) => {
+        allRobots = Object.values(s.val());
         const list = document.getElementById('robot-list');
         list.innerHTML = '';
-        robots.forEach(r => {
-            list.innerHTML += `
-                <div class="robot-card">
-                    <img src="${r.gambar}" class="robot-image">
-                    <h3>${r.model}</h3>
-                    <div class="price">RM ${r.harga}</div>
-                    <button class="btn-add" onclick="addToCart('${r.model}', '${r.harga}', '${r.gambar}')">ADD TO CART</button>
-                </div>
-            `;
+        allRobots.forEach(r => {
+            const card = document.createElement('div');
+            card.className = 'robot-card';
+            card.innerHTML = `<img src="${r.gambar}" class="robot-image"><h3>${r.model}</h3><p class="price">RM ${r.harga}</p>`;
+            card.onclick = () => openDetail(r);
+            list.appendChild(card);
         });
-    }
+    });
 
-    window.searchRobot = () => {
-        const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = allRobots.filter(r => r.model.toLowerCase().includes(term));
-        displayRobots(filtered);
-        showProducts();
-    }
+    window.openDetail = (r) => {
+        document.getElementById('detailImg').src = r.gambar;
+        document.getElementById('detailTitle').innerText = r.model;
+        document.getElementById('detailPrice').innerText = "RM " + r.harga;
+        document.getElementById('detailDesc').innerText = r.fungsi || "Robot serbaguna untuk pelbagai industri.";
+        document.getElementById('detailSpecs').innerHTML = `<p><b>Bateri:</b> ${r.bateri}</p><p><b>Processor:</b> ${r.processor}</p>`;
+        document.getElementById('detailOverlay').style.display = 'flex';
+        document.getElementById('addBtnDetail').onclick = () => addToCart(r.model, r.harga, r.gambar);
+    };
+
+    window.closeDetail = () => document.getElementById('detailOverlay').style.display = 'none';
+
+    window.addToCart = (m, h, g) => {
+        cart.push({m, h, g});
+        document.getElementById('cart-num').innerText = cart.length;
+        alert("Ditambah ke troli!");
+    };
 </script>
 
 </body>
